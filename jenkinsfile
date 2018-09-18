@@ -6,7 +6,7 @@ pipeline {
      stage ('DEV ENV') {
 
      steps {
-       withMaven(maven : 'maven') {
+       with Maven(maven : 'maven') {
            sh 'mvn clean compile'
            }
         }
@@ -14,7 +14,7 @@ pipeline {
       stage ('QA ENV') {
 
      steps {
-       withMaven(maven : 'maven') {
+       with Maven(maven : 'maven') {
            sh 'mvn clean package'
            }
         }
@@ -22,7 +22,7 @@ pipeline {
      stage ('STG ENV') {
 
      steps {
-       withMaven(maven : 'maven') {
+       with Maven(maven : 'maven') {
            sh 'mvn clean test'
            }
         }
