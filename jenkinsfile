@@ -5,7 +5,7 @@ pipeline {
      stage ('Compile Stage') {
  
      steps {
-       (maven : 'maven') {
+       withmaven(maven : 'maven') {
            sh "'${MAVEN_HOME}/opt/apache-maven-3.5.4' mvn clean compile"
            }
         }
@@ -13,7 +13,7 @@ pipeline {
       stage ('Package Stage') {
  
      steps {
-       (maven : 'maven') {
+       withmaven(maven : 'maven') {
            sh "'${MAVEN_HOME}/opt/apache-maven-3.5.4' mvn clean package"
            }
         }
@@ -21,7 +21,7 @@ pipeline {
      stage ('Testing Stage') {
  
      steps {
-      (maven : 'maven') {
+       withmaven(maven : 'maven') {
            sh "'${MAVEN_HOME}/opt/apache-maven-3.5.4' mvn clean test"
            }
         }
