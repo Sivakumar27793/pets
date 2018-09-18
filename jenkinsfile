@@ -1,0 +1,31 @@
+
+pipeline {
+ agent any
+
+  stages {
+     stage ('DEV ENV') {
+
+     steps {
+       withMaven(maven : 'maven') {
+           sh 'mvn clean compile'
+           }
+        }
+      }
+      stage ('QA ENV') {
+
+     steps {
+       withMaven(maven : 'maven') {
+           sh 'mvn clean package'
+           }
+        }
+      }
+     stage ('STG ENV') {
+
+     steps {
+       withMaven(maven : 'maven') {
+           sh 'mvn clean test'
+           }
+        }
+      }
+    }
+ }
