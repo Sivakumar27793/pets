@@ -1,31 +1,30 @@
-
 pipeline {
  agent any
-
+ 
   stages {
-     stage ('DEV ENV') {
-
+     stage ('Compile Stage') {
+ 
      steps {
-       withmaven(maven : 'maven') {
-           sh 'mvn clean compile'
+       withMaven(maven : 'maven') {
+           sh "'${MAVEN_HOME}/opt/apache-maven-3.5.4' mvn clean compile"
            }
         }
       }
-      stage ('QA ENV') {
-
+      stage ('Package Stage') {
+ 
      steps {
-       withmaven(maven : 'maven') {
-           sh 'mvn clean package'
+       withMaven(maven : 'maven') {
+           sh "'${MAVEN_HOME}/opt/apache-maven-3.5.4' mvn clean package"
            }
         }
       }
-     stage ('STG ENV') {
-
+     stage ('Testing Stage') {
+ 
      steps {
-       withmaven(maven : 'maven') {
-           sh 'mvn clean test'
+       withMaven(maven : 'maven') {
+           sh "'${MAVEN_HOME}/opt/apache-maven-3.5.4' mvn clean test"
            }
         }
       }
     }
- }
+ }  
